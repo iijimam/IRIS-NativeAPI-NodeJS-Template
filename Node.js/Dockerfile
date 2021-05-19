@@ -23,4 +23,5 @@ COPY ./run.sh ./run1.sh
 RUN sed -e 's/\r//g' -e "s///" run1.sh > run.sh && \
  chmod 755 ./run.sh
 
+EXPOSE 3000
 ENTRYPOINT ["/usr/projects/run.sh"]
