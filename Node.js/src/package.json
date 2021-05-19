@@ -1,0 +1,13 @@
+{
+    "name": "iris-nativeapi-for-nodejs-container",
+    "version": "1.0.0",
+    "description": "InterSystems IRIS Native API for Node.js (Conatiner)",
+    "author": "intersystems japan developer community",
+    "main": "Server.js",
+    "scripts": {
+      "start": "node Server.js"
+    },
+    "dependencies": {
+      "express": "^4.16.1"
+    }
+  }

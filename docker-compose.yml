@@ -1,0 +1,44 @@
+version: '3.7'
+
+networks:
+  isjdctemplate-network:
+    name: isjdctemplate-network
+    driver: bridge
+    ipam:
+      driver: default
+
+services:
+  iris:
+    build:
+      context: ./IRIS
+      dockerfile: Dockerfile
+    image: isjdctemplate:nativeapi-iris
+    init: true
+    hostname: nativeapi-iris
+    container_name: nativeapi-iris
+    ports:
+      # webserver/management portal port
+      - "52779:52773"
+      # superserver default port
+      - "1972:1972"
+    environment:
+      TZ: JST-9
+    networks:
+      - isjdctemplate-network
+
+  nodejs:
+    build:
+      context: ./Node.js
+      dockerfile: Dockerfile
+    image: isjdctemplate:nativeapi-nodejs
+    init: true
+    hostname: nativeapi-nodejs
+    container_name: nativeapi-nodejs
+    environment:
+      - TZ=JST-9
+    ports:
+      - "3000:3000"
+    #volumes:
+    #  - ./Python/jupyter-sample:/ISC
+    networks:
+      - isjdctemplate-network
