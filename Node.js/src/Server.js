@@ -1,6 +1,6 @@
 const http = require('http');
 const hostname = 'localhost';
-const port = 3000;
+const port = 8080;
 
 var server = http.createServer();
 server.on('request', doRequest);
@@ -13,6 +13,7 @@ function doRequest(req, res) {
     
     // ファイルを読み込んだら、コールバック関数を実行する。
     fs.readFile('./graph.html', 'utf-8' , doReard );
+    //fs.readFile('./test.html', 'utf-8' , doReard );
     
     // コンテンツを表示する。
     function doReard(err, data) {

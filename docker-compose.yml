@@ -37,7 +37,7 @@ services:
     environment:
       - TZ=JST-9
     ports:
-      - "3000:3000"
+      - "8080:8080"
     #volumes:
     #  - ./Python/jupyter-sample:/ISC
     networks:
