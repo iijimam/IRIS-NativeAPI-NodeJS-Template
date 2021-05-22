@@ -50,7 +50,6 @@ let connectionInfo = {
     "pwd":"SYS"
 };
 
-console.log(connectionInfo);
 //IRISへ接続
 const connection = irisnativeapi.createConnection(connectionInfo);
 
