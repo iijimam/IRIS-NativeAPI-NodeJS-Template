@@ -3,11 +3,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>ようこそ</title></head>
-<body>
+<script>
+function getURL(){
+    var hostname=location.hostname;
+    var url="http://"+hostname+":8080/graph";
+    document.getElementById("link1").innerHTML="<a href='"+url+"'>登場人物の関係のある人を一覧します</a>";
+    document.getElementById("link2").innerHTML="<a href='"+url+"?Levi'>指定の登場人物（リンク例はLevi）に関連のある人を表示します</a>";
+}
+    </script>
+<body onload="getURL()">
 IRISのNativeAPI for Node.js で作成したグローバルを参照する場合は以下URLにアクセスしてください
 <br>
-<a href="http://localhost:8080/graph">登場人物の関係のある人を一覧します</graph>
-<br>
-<a href="http://localhost:8080/graph?Levi">指定の登場人物（リンク例はLevi）に関連のある人を表示します</a>
+<div id="link1"></div>
+<div id="link2"></div>
 </body>
 </html>
