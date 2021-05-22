@@ -107,26 +107,26 @@ Native API は、IRIS 内部のネイティブデータ（＝グローバル変�
 Docker、docker-compose、git が利用できる環境でお試しください。
 
 **使用するコンテナのイメージ**
-![](https://github.com/iijimam/doc-images2/blob/master/IRIS-NativeAPI-Template/conatiner-python.gif)
+![](https://github.com/iijimam/doc-images2/blob/master/IRIS-NativeAPI-Template/conatiner-node.gif)
 
 データ登録後 [Cytoscape.js](https://js.cytoscape.org/) を利用した HTML でも人物相関を視覚的に確認できるようにしています。
 
-[http://localhost:3000](http://localhost:3000)
+[http://localhost:8080](http://localhost:8080)
 
 > REST 経由でグローバル変数を取得しています。IRIS で作成する REST サーバについてご興味ある方は、ぜひ [こちらの記事](https://jp.community.intersystems.com/node/479546) もご参照ください。
 
 HTML で特定の登場人物の関係者を探す場合は、クエリ文字列に人物名を指定してください（人物名は大小文字を区別します。先頭文字が大文字後は小文字で登録しています）。
 
- - 例1 [http://localhost:3000?Levi](http://localhost:3000?Levi)
+ - 例1 [http://localhost:8080?Levi](http://localhost:8080?Levi)
 
- - 例2 [http://localhost:3000?Armin](http://localhost:3000?Armin)
+ - 例2 [http://localhost:8080?Armin](http://localhost:8080?Armin)
 
 
 
 サンプル実行までの手順は以下の通りです。
 
 - [3-1) ダウンロード (git clone)](#3-1-ダウンロード-git-clone)
-- [3-2) Node.js 用コンテナを使う場合](#3-2-Node.js-用コンテナを使う場合)
+- [3-2) Node.js 用コンテナを使う場合](#3-2-nodejs-用コンテナを使う場合)
 
 Node.js の実行をコンテナではなくてホストで行う場合は、以下手順をご参照ください。
 - [4-1) Linuxの場合](#4-1-linuxの場合)
@@ -163,16 +163,46 @@ git clone https://github.com/Intersystems-jp/IRIS-NativeAPI-NodeJS-Template.git
 
 3) サンプルを動かす方法
         ```
-        docker-compose run nodejs
+        docker-compose run nodejs node NativeAPITest.js
         ```
 
     データを登録した後、登場人物の全関係者一覧します。
     
     その後、特定の登場人物の関係者一覧します。
+    
+    実行例は以下の通りです。
+    ```
+    ~IRIS-NativeAPI-NodeJS-Template$ docker-compose run nodejs node NativeAPITest.js
+    Creating iris-nativeapi-nodejs-template_nodejs_run ... done
 
-    **実行例（Jupyter）**
-    ![](https://github.com/iijimam/doc-images2/blob/master/IRIS-NativeAPI-Template/Jupyter.gif)
+    ****　第1ノードに登録された人の関係者を全件表示します　****
+    source-エレンの幼馴染（アルミン）
+      関係者： Bertolt
+      関係者： Eren
+      関係者： Mikasa
+    ＜-- 表示省略 --＞
+    ==================================================================
+    管理ポータル > システムエクスプローラー > グローバル
+    接続したネームスペースに切り替え ^Correlation を参照してください
+    ==================================================================
 
+    指定した人物の関係者を探します。人物名を入力（Armin、Levi、Zeke など） >>Levi
+
+    Levi の関係者を探します
+      関係者： Zeke
+
+    Zeke の関係者を探します
+      関係者： Eren
+
+    Eren の関係者を探します
+      関係者： Armin
+      関係者： Mikasa
+      関係者： Zeke
+
+    **** 終わり ****
+
+    ~IRIS-NativeAPI-NodeJS-Template$    
+    ```
    
 4) コンテナを停止する方法
     
@@ -189,18 +219,18 @@ git clone https://github.com/Intersystems-jp/IRIS-NativeAPI-NodeJS-Template.git
 
 5) Node.js 用コンテナのリビルド
 
-    ※ [ソースコード](./Node.js)を修正した場合、コンテナのリビルドを行ってください。
+    ※ [ソースコード](./Node.js/src)を修正した場合、コンテナのリビルドを行ってください。
     
     ```
     docker-compose build nodejs
     ```
 
 
-## 4) Node.js の実行をホストで行う場合  ≪修正必要！！≫
+## 4) Node.js の実行をホストで行う場合
 
 ホストに、Node.js がインストールされている状態でお試し下さい。
 
-ソースコードは、[TryNativeAPI.js](./Node.js/TryNativeAPI.js) にあります。
+ソースコードは、[TryNativeAPI.js](./Node.js/src/TryNativeAPI.js) にあります。
 
 Node.js の 接続先 IRIS はコンテナの IRIS を使用しています。
 
@@ -212,42 +242,35 @@ IRIS の接続情報としてホスト名の指定があり、デフォルトは
 
 ### 4-1) Linuxの場合
 
-最初に、サンプルコードで使用しているモジュール（networkx、matplotlib、irisnative）をインストールするため、[pipinstall-linux.sh](./Python/pipinstall-linux.sh) を実行します。
+最初に、サンプルコードで使用しているモジュール（express、irisnative）をインストールするため、[nominstall.sh](./Node.js/npminstall.sh) を実行します。
 
 ```
-~/IRIS-NativeAPI-Python-Template$ cd Python
-~/IRIS-NativeAPI-Python-Template/Python$ ./pipinstall-linux.sh
+~/IRIS-NativeAPI-NodeJS-Template$ cd Node.js
+~/IRIS-NativeAPI-NodeJS-Template/Node.js$ ./npminstall.sh
 ```
 
-Python の実行には、[runhost.sh](./Python/runhost.sh) を使用します。
+Python の実行には、[runhost.sh](./Node.js/runhost.sh) を使用します。
 
 **≪実行前にホスト名を確認してください≫**
 
-Python から IRIS へ接続するときのホスト名に **localhost** を指定しています。
+Node.js から IRIS へ接続するときのホスト名に **localhost** を指定しています。
 
-実行環境に合わせてホスト名を変更できるように、[host-params.sh](./Python/host-params.sh) にホスト名を指定し、環境変数に設定しています。
+実行環境に合わせてホスト名を変更できるように、[host-params.sh](./Node.js/host-params.sh) にホスト名を指定し、環境変数に設定しています。
 
-localhost 以外の場合は、[runhost.sh](./Python/runhost.sh) を実行する前に [host-params.sh](./Python/host-params.sh) の以下の行を環境に合わせて変更してください。
+localhost 以外の場合は、[runhost.sh](./Node.js/runhost.sh) を実行する前に [host-params.sh](./Node.js/host-params.sh) の以下の行を環境に合わせて変更してください。
 
 ```
 IRISHOSTNAME="localhost"
 ```
 
-またサンプルでは、日本語表示を行うため、フォントに **TakaoPGothic** を指定しています。
-他のフォントを指定する場合は、[host-params.sh](./Python/host-params.sh) の以下の行を修正してください。
-
-```
-SAMPLEFONT="TakaoPGothic"
-```
-
-事前準備ができたら、[runhost.sh](./Python/runhost.sh) を実行します。
+事前準備ができたら、[runhost.sh](./Node.js/runhost.sh) を実行します。
 
 実行例）
 データ登録後、登場人物の全関係者を文字で出力します。その後、特定の登場人物の関係者を networkx を使用
 した表示で確認できます（ファイル出力します）。
 
 ```
-~/IRIS-NativeAPI-Python-Template/Python$ ./runhost.sh
+~/IRIS-NativeAPI-NodeJS-Template/Node.js$ ./runhost.sh
 Armin - エレンの幼馴染
 （アルミン）
   関係者： Bertolt
@@ -261,52 +284,45 @@ Bertolt - 超大型の巨人
 Leviに関連する人物を探します
 ******************************
 
-networkxの表示を sample1.jpg　に出力しました
+
 ----------------------
 ** 処理終了しました **
 ----------------------
-~IRIS-NativeAPI-Python-Template/Python$
+~IRIS-NativeAPI-NodeJS-Template/NodeJS$
 ```
 
 
 ### 4-2) Windows の場合
 
-最初に、サンプルコードで使用しているモジュール（networkx、matplotlib、irisnative）をインストールするため、[pipinstall.bat](./Python/pipinstall.bat) を実行します。
+最初に、サンプルコードで使用しているモジュール（express、irisnative）をインストールするため、[npminstall.bat](./Node.js/npminstall.bat) を実行します。
 
 ```
-~/IRIS-NativeAPI-Python-Template> cd Python
-~/IRIS-NativeAPI-Python-Template/Python> pipinstall.bat
+~/IRIS-NativeAPI-NodeJS-Template> cd Node.js
+~/IRIS-NativeAPI-NodeJS-Template/Node.js> npminstall.bat
 ```
 
-Python の実行には、[runhost.bat](./Python/runhost.bat) を使用します。
+Python の実行には、[runhost.bat](./Node.js/runhost.bat) を使用します。
 
 **≪実行前にホスト名を確認してください≫**
 
-Python から IRIS へ接続するときのホスト名に **localhost** を指定しています。
+Node から IRIS へ接続するときのホスト名に **localhost** を指定しています。
 
-実行環境に合わせてホスト名を変更できるように、[host-params.bat](./Python/host-params.bat) にホスト名を指定し、環境変数に設定しています。
+実行環境に合わせてホスト名を変更できるように、[host-params.bat](./Node.js/host-params.bat) にホスト名を指定し、環境変数に設定しています。
 
-localhost 以外の場合は、[runhost.bat](./Python/runhost.bat) を実行する前に [host-params.bat](./Python/host-params.bat) の以下行を環境に合わせて変更してください。
+localhost 以外の場合は、[runhost.bat](./Node.js/runhost.bat) を実行する前に [host-params.bat](./Node.js/host-params.bat) の以下行を環境に合わせて変更してください。
 
 ```
 SET IRISHOSTNAME=localhost
 ```
 
-またサンプルでは、日本語表示を行うため、フォントに **MS Gothic** を指定しています。
-他のフォントを指定する場合は、[host-params.bat](./Python/host-params.bat) の以下の行を修正してください。
-
-```
-SET SAMPLEFONT=MS Gothic
-```
-
-事前準備ができたら、[runhost.bat](./Python/runhost.bat) を実行します。
+事前準備ができたら、[runhost.bat](./Node.js/runhost.bat) を実行します。
 
 実行例）
 データ登録後、登場人物の全関係者を文字で出力します。その後、特定の登場人物の関係者を networkx を使用
 した表示で確認できます（ファイル出力します）。
 
 ```
-~/IRIS-NativeAPI-Python-Template/Python> runhost.bat
+~/IRIS-NativeAPI-NodeJS-Template/NodeJS> runhost.bat
 Armin - エレンの幼馴染
 （アルミン）
   関係者： Bertolt
@@ -321,7 +337,6 @@ Bertolt - 超大型の巨人
 Leviに関連する人物を探します
 ******************************
 
-networkxの表示を sample1.jpg　に出力しました
 -----------------------
  ** completed !! **
 -----------------------

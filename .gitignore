@@ -1,1 +1,5 @@
-./Node/node_modules/*
+Node.js/node_modules
+Node.js/node_modules/
+Node.js/package*.json
+Node.js/quickstarts-nodejs
+Node.js/intersystems-iris-native
