@@ -69,16 +69,16 @@ set ^Correlation("Mikasa","Eren")=""
 ![](https://github.com/iijimam/doc-images/blob/master/IRIS-NativeAPI-Template/MP-Global.gif)
 
 
-ここまでのグローバル変数を Java から設定する場合のコードは以下の通りです。コード全体については [TryNativeAPI-host.py](/Python/TryNativeAPI-host.py) をご参照ください。
+ここまでのグローバル変数を Node.js から設定する場合のコードは以下の通りです。コード全体については [TryNativeAPI-host.py](/Python/TryNativeAPI-host.py) をご参照ください。
 ```
 iris_native.set("主人公（エレン）","Correlation","Eren")
-iris_native.set("","Correlation","Eren","Mikasa")
-iris_native.set("","Correlation","Eren","Armin")
-iris_native.set("","Correlation","Eren","Zeke")
+iris_native.set(null,"Correlation","Eren","Mikasa")
+iris_native.set(null,"Correlation","Eren","Armin")
+iris_native.set(null,"Correlation","Eren","Zeke")
 
 iris_native.set("エレンの幼馴染（ミカサ）","Correlation","Mikasa")
-iris_native.set("","Correlation","Mikasa","Armin")
-iris_native.set("","Correlation","Mikasa","Eren")
+iris_native.set(null,"Correlation","Mikasa","Armin")
+iris_native.set(null,"Correlation","Mikasa","Eren")
 ```
 
 

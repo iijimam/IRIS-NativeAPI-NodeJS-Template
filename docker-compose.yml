@@ -1,12 +1,5 @@
 version: '3.7'
 
-networks:
-  isjdctemplate-network:
-    name: isjdctemplate-network
-    driver: bridge
-    ipam:
-      driver: default
-
 services:
   iris:
     build:
@@ -23,8 +16,6 @@ services:
       - "1972:1972"
     environment:
       TZ: JST-9
-    networks:
-      - isjdctemplate-network
 
   nodejs:
     build:
@@ -38,7 +29,5 @@ services:
       - TZ=JST-9
     ports:
       - "8080:8080"
-    #volumes:
-    #  - ./Python/jupyter-sample:/ISC
-    networks:
-      - isjdctemplate-network
+    volumes:
+      - ./src:/ISC

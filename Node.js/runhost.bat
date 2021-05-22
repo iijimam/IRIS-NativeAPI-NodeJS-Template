@@ -1,4 +1,4 @@
 @echo off
 call host-params.bat
-node NativeAPITest.js
-node Server.js
+node ./src/NativeAPITest.js
+node ./src/Server.js

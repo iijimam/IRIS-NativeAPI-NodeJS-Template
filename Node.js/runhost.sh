@@ -1,4 +1,4 @@
 #!/bin/bash
 source ./host-params.sh
-node NativeAPITest.js
-node Server.js
+node ./src/NativeAPITest.js
+node ./src/Server.js
