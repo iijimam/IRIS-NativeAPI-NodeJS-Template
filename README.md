@@ -234,10 +234,17 @@ git clone https://github.com/Intersystems-jp/IRIS-NativeAPI-NodeJS-Template.git
 
 Node.js の 接続先 IRIS はコンテナの IRIS を使用しています。
 
+[3-2) Node.js 用コンテナを使う場合](#3-2-nodejs-用コンテナを使う場合) でコンテナで試されている場合は、一旦コンテナを破棄し、IRIS のコンテナのみ開始します。
+
+```
+docker-compose down
+docker-compose up -d iris
+```
+
 IRIS の接続情報としてホスト名の指定があり、デフォルトは **localhost** が指定されていますが、実行環境に合わせて変更できるようにしています。
 
 詳しくは [4-1) Linuxの場合](#4-1-linux%E3%81%AE%E5%A0%B4%E5%90%88)
- または [4-2) Windowsの場合](#4-2-windows-%E3%81%AE%E5%A0%B4%E5%90%88) ご参照ください。
+または [4-2) Windowsの場合](#4-2-windows-%E3%81%AE%E5%A0%B4%E5%90%88) ご参照ください。
 
 
 ### 4-1) Linuxの場合
@@ -249,7 +256,7 @@ IRIS の接続情報としてホスト名の指定があり、デフォルトは
 ~/IRIS-NativeAPI-NodeJS-Template/Node.js$ ./npminstall.sh
 ```
 
-Python の実行には、[runhost.sh](./Node.js/runhost.sh) を使用します。
+Node.js の実行には、[runhost.sh](./Node.js/runhost.sh) を使用します。
 
 **≪実行前にホスト名を確認してください≫**
 
@@ -271,25 +278,51 @@ IRISHOSTNAME="localhost"
 
 ```
 ~/IRIS-NativeAPI-NodeJS-Template/Node.js$ ./runhost.sh
-Armin - エレンの幼馴染
-（アルミン）
-  関係者： Bertolt
-  関係者： Eren
-  関係者： Mikasa
-Bertolt - 超大型の巨人
-（ベルトルト）
-  関係者： Reiner
-  ＜省略＞
-******************************
-Leviに関連する人物を探します
-******************************
 
+****　第1ノードに登録された人の関係者を全件表示します　****
+source-エレンの幼馴染（アルミン）
+   関係者： Bertolt
+   関係者： Eren
+   関係者： Mikasa
+source-超大型の巨人（ベルトルト）
+   関係者： Reiner
+source-エレンのお母さん（カルラ）：ダイナに捕食
+   関係者： Grisha
+  ≪表示省略≫
+==================================================================
+管理ポータル > システムエクスプローラー > グローバル
+ 接続したネームスペースに切り替え ^Correlation を参照してください
+==================================================================
+指定した人物の関係者を探します。人物名を入力（Armin、Levi、Zeke など） >>Armin
 
-----------------------
-** 処理終了しました **
-----------------------
-~IRIS-NativeAPI-NodeJS-Template/NodeJS$
+Armin の関係者を探します
+   関係者： Bertolt
+   関係者： Eren
+   関係者： Mikasa
+
+Bertolt の関係者を探します
+   関係者： Reiner
+
+Reiner の関係者を探します
+   関係者： Bertolt
+
+  ≪表示省略≫
+ **** 終わり ****
+
+Running at Port 8080...
+
+http://localhost:8080/ にアクセスするとグラフ構造をHTMLで確認できます。
+※ ホスト名は環境に合わせて変更してください ※
+
+Ctrl + C で終了します。
+
 ```
+
+実行が完了すると、IRIS にデータが登録されるので、HTML で確認できます。
+
+[http://localhost:8080](http://localhost:8080)
+
+**ホスト名は環境に合わせて変更してください**
 
 
 ### 4-2) Windows の場合
@@ -301,11 +334,11 @@ Leviに関連する人物を探します
 ~/IRIS-NativeAPI-NodeJS-Template/Node.js> npminstall.bat
 ```
 
-Python の実行には、[runhost.bat](./Node.js/runhost.bat) を使用します。
+Node.js の実行には、[runhost.bat](./Node.js/runhost.bat) を使用します。
 
 **≪実行前にホスト名を確認してください≫**
 
-Node から IRIS へ接続するときのホスト名に **localhost** を指定しています。
+Node.js から IRIS へ接続するときのホスト名に **localhost** を指定しています。
 
 実行環境に合わせてホスト名を変更できるように、[host-params.bat](./Node.js/host-params.bat) にホスト名を指定し、環境変数に設定しています。
 
@@ -323,26 +356,51 @@ SET IRISHOSTNAME=localhost
 
 ```
 ~/IRIS-NativeAPI-NodeJS-Template/NodeJS> runhost.bat
-Armin - エレンの幼馴染
-（アルミン）
-  関係者： Bertolt
-  関係者： Eren
-  関係者： Mikasa
-Bertolt - 超大型の巨人
-（ベルトルト）
-  関係者： Reiner
-    ＜省略＞
 
-******************************
-Leviに関連する人物を探します
-******************************
+****　第1ノードに登録された人の関係者を全件表示します　****
+source-エレンの幼馴染（アルミン）
+   関係者： Bertolt
+   関係者： Eren
+   関係者： Mikasa
+source-超大型の巨人（ベルトルト）
+   関係者： Reiner
+source-エレンのお母さん（カルラ）：ダイナに捕食
+   関係者： Grisha
+  ≪表示省略≫
+==================================================================
+管理ポータル > システムエクスプローラー > グローバル
+ 接続したネームスペースに切り替え ^Correlation を参照してください
+==================================================================
+指定した人物の関係者を探します。人物名を入力（Armin、Levi、Zeke など） >>Armin
 
------------------------
- ** completed !! **
------------------------
+Armin の関係者を探します
+   関係者： Bertolt
+   関係者： Eren
+   関係者： Mikasa
+
+Bertolt の関係者を探します
+   関係者： Reiner
+
+Reiner の関係者を探します
+   関係者： Bertolt
+
+  ≪表示省略≫
+ **** 終わり ****
+
+Running at Port 8080...
+
+http://localhost:8080/ にアクセスするとグラフ構造をHTMLで確認できます。
+※ ホスト名は環境に合わせて変更してください ※
+
+Ctrl + C で終了します。
 
 >
 ```
 
+実行が完了すると、IRIS にデータが登録されるので、HTML で確認できます。
+
+[http://localhost:8080](http://localhost:8080)
+
+**ホスト名は環境に合わせて変更してください**
 
 **READY SET CODE!!**
