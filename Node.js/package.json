@@ -1,5 +1,5 @@
 {
-  "name": "intersystems-iris-native-module",
+  "name": "intersystems-iris-native-module-module",
   "version": "1.2.0",
   "description": "InterSystems IRIS Native API for Node.js",
   "main": "index.js",
