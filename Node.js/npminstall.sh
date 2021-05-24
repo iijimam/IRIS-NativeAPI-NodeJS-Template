@@ -2,6 +2,7 @@
 rm -rf IRISModules
 # irisnativeモジュールインストールのため、git clone
 git clone https://github.com/Intersystems-jp/IRISModules.git
+cp IRISModules/node/intersystems-iris-native/package.json .
 npm install --save IRISModules/node/intersystems-iris-native
 
 # サンプルで使用するモジュールをインストール
