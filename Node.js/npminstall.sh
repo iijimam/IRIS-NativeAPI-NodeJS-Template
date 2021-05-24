@@ -8,4 +8,3 @@ npm install --save intersystems-iris-native
 
 # サンプルで使用するモジュールをインストール
 npm install express --save
-
