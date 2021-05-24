@@ -1,4 +1,4 @@
-# **キーバリュー形式**で Node.js から IRIS にアクセスできる実行環境テンプレート（**Native API for Node.js**）
+# **キーバリュー形式**で Node.js から IRIS にアクセスできる開発環境テンプレート（**Native API for Node.js**）
 
 このテンプレートでは、Node.js 用コンテナから InterSystems IRIS のコンテナへ接続し、**レコードでもオブジェくでもない、キーバリュー形式**でのデータ更新／取得を体験できます。
 
@@ -132,6 +132,8 @@ Node.js の実行をコンテナではなくてホストで行う場合は、以
 - [4-1) Linuxの場合](#4-1-linuxの場合)
 - [4-2) Windowsの場合](#4-2-windows-の場合)
 
+コンテナの Node.js の開発環境を自由にご利用いただくこともできます。詳細は以下ご参照ください。
+- [5) 新規作成したファイルを実行する方法](#5-新規作成したファイルを実行する方法])
 
 ### 3-1) ダウンロード (git clone)
 
@@ -402,5 +404,22 @@ Ctrl + C で終了します。
 [http://localhost:8080](http://localhost:8080)
 
 **ホスト名は環境に合わせて変更してください**
+
+
+## 5) 新規作成したファイルを実行する方法
+
+[docker-compose.yml](docker-compose.yml) では、Node.js コンテナ内の /ISC ディレクトリをホストの [./Node.js/ISC](./Node.js/ISC) にマウントしているので、新規作成したファイルを git clone 後にできるディレクトリ（IRIS-NativeAPI-NodeJS-Template）以下の Node.js/ISC に配置いただくことで、Node.js の実行を確認できます。
+
+テスト用ファイル [test.js](./Node.js/ISC/test.js) を実行する場合は以下の通りです。
+
+```
+~IRIS-NativeAPI-NodeJS-Template$ docker-compose run nodejs node /ISC/test.js
+Creating iris-nativeapi-nodejs-template_nodejs_run ... done
+こんにちは
+~IRIS-NativeAPI-NodeJS-Template$
+```
+
+※ IRIS と Node.js のコンテナが開始している必要があります。詳細は [3-2) Node.js 用コンテナを使う場合](#3-2-nodejs-用コンテナを使う場合) をご参照ください。
+
 
 **READY SET CODE!!**
