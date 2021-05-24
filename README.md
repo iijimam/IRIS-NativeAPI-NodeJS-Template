@@ -232,7 +232,7 @@ git clone https://github.com/Intersystems-jp/IRIS-NativeAPI-NodeJS-Template.git
 
 ホストに、Node.js がインストールされている状態でお試し下さい。
 
-ソースコードは、[TryNativeAPI.js](./Node.js/src/TryNativeAPI.js) にあります。
+ソースコードは、[NativeAPITest.js](./Node.js/src/NativeAPITest) にあります。
 
 Node.js の 接続先 IRIS はコンテナの IRIS を使用しています。
 
