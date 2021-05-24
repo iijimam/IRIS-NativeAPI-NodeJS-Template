@@ -7,8 +7,8 @@ COPY src .
 # git で必要なモジュールダウンロード＋npm install
 RUN apt-get update && \
     apt-get install -y git && \
-    git clone https://github.com/intersystems/quickstarts-nodejs.git && \
-    cp -r quickstarts-nodejs/Solutions/intersystems-iris-native . && \
+    git clone https://github.com/Intersystems-jp/IRISModules.git && \
+    cp -r IRISModules/node/intersystems-iris-native . && \
     npm install --save intersystems-iris-native && \
     npm install express --save
 
