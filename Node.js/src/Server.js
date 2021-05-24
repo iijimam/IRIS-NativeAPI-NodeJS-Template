@@ -16,12 +16,20 @@ app.listen(port, () => {
 // ファイルモジュールを読み込む
 var fs = require('fs');
 
+readfile="./src/graph.html"
+//環境変数 process.env.xxx
+//ホスト実行時以下環境変数を利用しているのでチェック
+hostname = process.env.IRISHOSTNAME;
+if (!hostname) {
+  readfile="./graph.html"    
+}
+
 // 静的ファイルのルーティング
 app.use(express.static(__dirname));
 
 app.get('/graph',(req,res) => {
   // ファイルを読み込んだら、コールバック関数を実行する。
-  fs.readFile('./graph.html', 'utf-8' , doReard );
+  fs.readFile(readfile, 'utf-8' , doReard );
   // コンテンツを表示する。
   function doReard(err, data) {
       res.writeHead(200, {'Content-Type': 'text/html'});
