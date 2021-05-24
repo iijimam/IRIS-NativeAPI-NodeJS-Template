@@ -23,7 +23,7 @@ function getTagets(irisNative,source,count) {
     var result=[]
     console.log("\n"+source+" の関係者を探します");
 
-    let ite1=irisNative.iterator("Correlation",source);
+    let ite1=irisNative.iterator("Relation",source);
     for ([target] of ite1) {
         console.log("   関係者：",target);
         result.push(target);
@@ -56,62 +56,62 @@ const connection = irisnativeapi.createConnection(connectionInfo);
 //IRISインスタンス生成
 const irisNative = connection.createIris();
 
-// ^Correlationが存在するとき
-if  (irisNative.isDefined("Correlation")==1) {
+// ^Relationが存在するとき
+if  (irisNative.isDefined("Relation")==1) {
 
     //グローバル変数を消去
-    System.out.println("^Correlation を消去します\n");
-    irisNative.kill("Correlation");        
+    System.out.println("^Relation を消去します\n");
+    irisNative.kill("Relation");        
 }
 
-//set ^Correlation("Eren")="主人公（エレン）
-irisNative.set("主人公（エレン）","Correlation","Eren");
-irisNative.set("エレンの幼馴染（アルミン）","Correlation","Armin");
-irisNative.set("エレンの幼馴染（ミカサ）","Correlation","Mikasa");
-irisNative.set("エレンのお父さん（グリシャ）","Correlation","Grisha");
-irisNative.set("エレンの異母兄弟（ジーク）","Correlation","Zeke");
-irisNative.set("鎧の巨人（ライナー）","Correlation","Reiner");
-irisNative.set("超大型の巨人（ベルトルト）","Correlation","Bertolt");
-irisNative.set("エレンのお母さん（カルラ）：ダイナに捕食","Correlation","Carla");
-irisNative.set("ジークのお母さん（ダイナ）：レイス王家[フリッツ家]","Correlation","Dina");
-irisNative.set("人類最強の兵士（リヴァイ）","Correlation","Levi");
+//set ^Relation("Eren")="主人公（エレン）
+irisNative.set("主人公（エレン）","Relation","Eren");
+irisNative.set("エレンの幼馴染（アルミン）","Relation","Armin");
+irisNative.set("エレンの幼馴染（ミカサ）","Relation","Mikasa");
+irisNative.set("エレンのお父さん（グリシャ）","Relation","Grisha");
+irisNative.set("エレンの異母兄弟（ジーク）","Relation","Zeke");
+irisNative.set("鎧の巨人（ライナー）","Relation","Reiner");
+irisNative.set("超大型の巨人（ベルトルト）","Relation","Bertolt");
+irisNative.set("エレンのお母さん（カルラ）：ダイナに捕食","Relation","Carla");
+irisNative.set("ジークのお母さん（ダイナ）：レイス王家[フリッツ家]","Relation","Dina");
+irisNative.set("人類最強の兵士（リヴァイ）","Relation","Levi");
 
 //関係性を設定
-//set ^Correlation("Eren","Mikasa")=""
-irisNative.set("","Correlation","Eren","Mikasa");
-irisNative.set("","Correlation","Eren","Armin");
-irisNative.set("","Correlation","Armin","Mikasa");
-irisNative.set("","Correlation","Mikasa","Armin");
-irisNative.set("","Correlation","Armin","Eren");
-irisNative.set("","Correlation","Mikasa","Eren");
-irisNative.set("","Correlation","Grisha","Eren");
-irisNative.set("","Correlation","Grisha","Zeke");
-irisNative.set("","Correlation","Eren","Zeke");
-irisNative.set("","Correlation","Zeke","Eren");
-irisNative.set("","Correlation","Grisha","Dina");
-irisNative.set("","Correlation","Dina","Grisha");            
-irisNative.set("","Correlation","Grisha","Carla");
-irisNative.set("","Correlation","Carla","Grisha");
-irisNative.set("","Correlation","Dina","Carla");
-irisNative.set("","Correlation","Armin","Bertolt");
-irisNative.set("","Correlation","Reiner","Bertolt");
-irisNative.set("","Correlation","Bertolt","Reiner");
-irisNative.set("","Correlation","Levi","Zeke");
+//set ^Relation("Eren","Mikasa")=""
+irisNative.set("","Relation","Eren","Mikasa");
+irisNative.set("","Relation","Eren","Armin");
+irisNative.set("","Relation","Armin","Mikasa");
+irisNative.set("","Relation","Mikasa","Armin");
+irisNative.set("","Relation","Armin","Eren");
+irisNative.set("","Relation","Mikasa","Eren");
+irisNative.set("","Relation","Grisha","Eren");
+irisNative.set("","Relation","Grisha","Zeke");
+irisNative.set("","Relation","Eren","Zeke");
+irisNative.set("","Relation","Zeke","Eren");
+irisNative.set("","Relation","Grisha","Dina");
+irisNative.set("","Relation","Dina","Grisha");            
+irisNative.set("","Relation","Grisha","Carla");
+irisNative.set("","Relation","Carla","Grisha");
+irisNative.set("","Relation","Dina","Carla");
+irisNative.set("","Relation","Armin","Bertolt");
+irisNative.set("","Relation","Reiner","Bertolt");
+irisNative.set("","Relation","Bertolt","Reiner");
+irisNative.set("","Relation","Levi","Zeke");
 
 
 console.log("\n****　第1ノードに登録された人の関係者を全件表示します　****");
 
-let ite1=irisNative.iterator("Correlation");
+let ite1=irisNative.iterator("Relation");
 for ([source,data] of ite1) {
     console.log("source"+"-"+data);
-    let ite2=irisNative.iterator("Correlation",source);
+    let ite2=irisNative.iterator("Relation",source);
     for ([target] of ite2) {
         console.log("   関係者：",target);
     }
 }
 
 console.log("==================================================================");
-console.log("管理ポータル > システムエクスプローラー > グローバル \n 接続したネームスペースに切り替え ^Correlation を参照してください");
+console.log("管理ポータル > システムエクスプローラー > グローバル \n 接続したネームスペースに切り替え ^Relation を参照してください");
 console.log("==================================================================");
 
 (async function main() {

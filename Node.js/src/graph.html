@@ -31,7 +31,7 @@
       var a64 = btoa(`${username}:${password}`)
       // Node用コンテナ利用時はホスト上のURLを指定（docker-compose でホスト上ポートを変えた場合は変更要）
       var hostname=location.hostname;
-      var url="http://" + hostname +":52779/graph/correlation"
+      var url="http://" + hostname +":52779/graph/relation"
       var querystring=location.search.substring(1);
       if (querystring.length>0) {
         url=url+ "/" + querystring;
