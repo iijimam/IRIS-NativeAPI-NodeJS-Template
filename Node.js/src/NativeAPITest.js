@@ -116,7 +116,7 @@ console.log("=================================================================="
 
 (async function main() {
     const name = await readUserInput('\n指定した人物の関係者を探します。人物名を入力（Armin、Levi、Zeke など） >>');
-    if (!name) { 
+    if (name!="") { 
         getTagets(irisNative,name,1);
     }
     console.log("\n **** 終わり ****\n");
