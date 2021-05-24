@@ -1,7 +1,7 @@
 @echo off
-git clone https://github.com/intersystems/quickstarts-nodejs.git
+git clone https://github.com/Intersystems-jp/IRISModules.git
 copy %CD%\src\package.json %CD%\
-xcopy /E /Y quickstarts-nodejs\Solutions\intersystems-iris-native %CD%\intersystems-iris-native\
+xcopy /E /Y IRISModules\node\intersystems-iris-native %CD%\intersystems-iris-native\
 npm install --save intersystems-iris-native
 
 npm install express --save
