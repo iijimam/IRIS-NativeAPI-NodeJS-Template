@@ -78,25 +78,25 @@ irisNative.set("人類最強の兵士（リヴァイ）","Relation","Levi");
 
 //関係性を設定
 //set ^Relation("Eren","Mikasa")=""
-irisNative.set("","Relation","Eren","Mikasa");
-irisNative.set("","Relation","Eren","Armin");
-irisNative.set("","Relation","Armin","Mikasa");
-irisNative.set("","Relation","Mikasa","Armin");
-irisNative.set("","Relation","Armin","Eren");
-irisNative.set("","Relation","Mikasa","Eren");
-irisNative.set("","Relation","Grisha","Eren");
-irisNative.set("","Relation","Grisha","Zeke");
-irisNative.set("","Relation","Eren","Zeke");
-irisNative.set("","Relation","Zeke","Eren");
-irisNative.set("","Relation","Grisha","Dina");
-irisNative.set("","Relation","Dina","Grisha");            
-irisNative.set("","Relation","Grisha","Carla");
-irisNative.set("","Relation","Carla","Grisha");
-irisNative.set("","Relation","Dina","Carla");
-irisNative.set("","Relation","Armin","Bertolt");
-irisNative.set("","Relation","Reiner","Bertolt");
-irisNative.set("","Relation","Bertolt","Reiner");
-irisNative.set("","Relation","Levi","Zeke");
+irisNative.set(null,"Relation","Eren","Mikasa");
+irisNative.set(null,"Relation","Eren","Armin");
+irisNative.set(null,"Relation","Armin","Mikasa");
+irisNative.set(null,"Relation","Mikasa","Armin");
+irisNative.set(null,"Relation","Armin","Eren");
+irisNative.set(null,"Relation","Mikasa","Eren");
+irisNative.set(null,"Relation","Grisha","Eren");
+irisNative.set(null,"Relation","Grisha","Zeke");
+irisNative.set(null,"Relation","Eren","Zeke");
+irisNative.set(null,"Relation","Zeke","Eren");
+irisNative.set(null,"Relation","Grisha","Dina");
+irisNative.set(null,"Relation","Dina","Grisha");            
+irisNative.set(null,"Relation","Grisha","Carla");
+irisNative.set(null,"Relation","Carla","Grisha");
+irisNative.set(null,"Relation","Dina","Carla");
+irisNative.set(null,"Relation","Armin","Bertolt");
+irisNative.set(null,"Relation","Reiner","Bertolt");
+irisNative.set(null,"Relation","Bertolt","Reiner");
+irisNative.set(null,"Relation","Levi","Zeke");
 
 
 console.log("\n****　第1ノードに登録された人の関係者を全件表示します　****");
